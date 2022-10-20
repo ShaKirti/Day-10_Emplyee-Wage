@@ -1,40 +1,77 @@
 package com.employee.company;
+import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
+
 public class EmployeeAttendance {
-    int isPartTime = 1;
-    int isFullTime = 2;
+    ArrayList<Integer> Wage = new ArrayList<Integer>();
+    ArrayList<String> Wages = new ArrayList<String>();
 
-    int computeEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth) {
+    void check() {
+        int totalsalary = 0;
+        int maxRateInMonth = 100;
+        int maxHoursInMonth = 100;
+        int totalEmpHr = 0;
+        int totalWorkingDays = 0;
+        int empHrs = 0;
+        int finalsalary = 0;
 
-        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+        System.out.println("Enter your company name ");
+        String companyName = new Scanner(System.in).nextLine();
+        System.out.println(companyName);
+        Wages.add(companyName);
 
-        while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays) {
+        System.out.println("Enter Employee rate Per hour of your Company :");
+        int empRatePerHr1 = new Scanner(System.in).nextInt();
+
+        System.out.println("Enter the Number of working days of your Company:");
+        int numOfWorkingDays1 = new Scanner(System.in).nextInt();
+
+        System.out.println("Enter the Number of working hours of your Company:");
+        int numOfWorkingHrs1 = new Scanner(System.in).nextInt();
+
+        while (totalEmpHr <= maxRateInMonth && totalWorkingDays <= numOfWorkingDays1
+                && numOfWorkingHrs1 <= maxHoursInMonth) {
             totalWorkingDays++;
-            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
-            switch (empCheck) {
-                case 0:
+            double randomCheck = Math.floor(Math.random() * 10) % 3;
+            int i = (int) randomCheck;
+            switch (i) {
+                case 2:
                     empHrs = 8;
                     break;
                 case 1:
                     empHrs = 4;
                     break;
-                default:
+                case 0:
                     empHrs = 0;
+                    break;
             }
-            totalEmpHrs += empHrs;
-            System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " + empHrs);
+
+            totalEmpHr = totalEmpHr + empHrs;
+
         }
-        int totalEmpWage = totalEmpHrs * empRatePerHr;
-        System.out.println("Total Emp Wage for " + company + " is : " + totalEmpWage);
-        return totalEmpWage;
+        totalsalary = totalEmpHr * empRatePerHr1;
+        finalsalary += totalsalary;
+
+        Wage.add(finalsalary);
+        System.out.println(Wages);
+        System.out.println(Wage);
+
+    }
+    @SuppressWarnings("resource")
+    public static void main(String[] args) {
+
+        System.out.println("How many company data you want to Enter ");
+//        EmployeeAttendance audi = new EmployeeAttendance();
+
+        new Scanner(System.in).toString();
+        int noOfCompanys = new Scanner(System.in).nextInt();
+
+        for (int i = 1; i <= noOfCompanys; i++) {
+//            audi.check();
+            new EmployeeAttendance().check();
+
+        }
     }
 
-    public static void main(String[] args) {
-        EmployeeAttendance emp = new EmployeeAttendance();
-        System.out.println("Welcome to the Employee Wage Computation Calculation");
-        emp.computeEmpWage("Microsoft", 20, 20, 100);
-        emp.computeEmpWage("Tata", 25, 18, 100);
-        emp.computeEmpWage("Hyundai", 25, 18, 100);
-        emp.computeEmpWage("Pyramid Consulting", 25, 18, 100);
-    }
 }
