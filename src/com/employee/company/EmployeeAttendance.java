@@ -9,19 +9,17 @@ public class EmployeeAttendance {
         System.out.println("Welcome to Employee Wage Computation");
 
         int randomCheck = new Random(3).nextInt();
+        switch (randomCheck){
+            case 0: System.out.println("Employee is absent.");
+                break;
+            case 1: System.out.println("Employee is present.");
+                TotalWage = WagePerHour * FullDayHour;
+                break;
+            case 2: System.out.println("Employee is present for the half day.");
+                TotalWage = WagePerHour * HalfDayHour;
+                break;
+        }
+        System.out.println("Employee Salary is: "+TotalWage);
+        }
 
-        if (randomCheck == 0) {
-            System.out.println("Employee is absent");
-        }
-        else if(randomCheck == 1){
-            TotalWage = WagePerHour * FullDayHour;
-            System.out.println("Employee is present");
-            System.out.println(TotalWage);
-        }
-        else{
-            TotalWage = WagePerHour * HalfDayHour;
-            System.out.println("Employee is present for the half day.");
-            System.out.println(TotalWage);
-        }
-    }
 }
