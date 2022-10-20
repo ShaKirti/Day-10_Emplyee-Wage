@@ -1,38 +1,39 @@
 package com.employee.company;
 import java.util.Random;
 public class EmployeeAttendance {
-    public static void main(String args[]){
-        System.out.println("Welcome to Employee Wage Computation Program.");
+    static final int isPresent = 1;
+    static final int isPartTime = 2;
 
-        int WagePerHour = 20;
-        int FullDayHour = 8;
-        int HalfDayHour = 4;
-        int WorkingDayPerMonth = 20;
-        int monthlySalary = 0;
-        int TotalWage = 0;
-        int WorkingHourPerMonth = 0;
-        int days = 1;
-        
-        int randomCheck = new Random().nextInt(3);
+    private void wagesTillMonth(int salaryPerHour, int totalWorkingDays, int maxWorkingHour, int fullDayWorkingHour) {
+        int empCheck;
+        int empHr = 0;
+        int totalSalary = 0;
+        int day = 0;
+        while (day < totalWorkingDays && (empHr + fullDayWorkingHour) <= maxWorkingHour) {
+            day++;
+            empCheck = (int) (Math.floor(Math.random() * 10) % 3);
 
-        while (days != 20 && WorkingHourPerMonth != 100) {
-            switch (randomCheck) {
-                case 0:
-                    System.out.println("Employee is absent.");
+            switch (empCheck) {
+                case isPresent:
+                    empHr += fullDayWorkingHour;
                     break;
-                case 1:
-                    System.out.println("Employee is present.");
-                    TotalWage = WagePerHour * FullDayHour;
+
+                case isPartTime:
+                    empHr += (fullDayWorkingHour / 2);
                     break;
-                case 2:
-                    System.out.println("Employee is present for the half day.");
-                    TotalWage = WagePerHour * HalfDayHour;
+
+                default:
+                    empHr += 0;
                     break;
             }
-            monthlySalary += TotalWage;
-            System.out.println("Day " + days + " : " + TotalWage);
-            days++;
+            System.out.println("Working day : " + day + " (Present : " + empCheck + ")");
         }
-        System.out.println("Employee Monthly Salary is: "+monthlySalary);
+        totalSalary = empHr * salaryPerHour;
+        System.out.println("Monthly Employee Wage is : " + totalSalary + "\nTotal working hours are : " + empHr);
+    }
+
+    public static void main(String[] args) {
+        EmployeeAttendance obj = new EmployeeAttendance();
+        obj.wagesTillMonth(20, 20, 100, 8);
     }
 }
