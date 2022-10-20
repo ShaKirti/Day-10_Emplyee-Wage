@@ -1,3 +1,6 @@
 .idea/
 out/
 EmployeeWage.iml
+
+EmployeeAttendance.java
+EmployeeWage.java
