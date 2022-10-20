@@ -1,39 +1,40 @@
 package com.employee.company;
 import java.util.Random;
 public class EmployeeAttendance {
-    static final int isPresent = 1;
-    static final int isPartTime = 2;
+    int isPartTime = 1;
+    int isFullTime = 2;
 
-    private void wagesTillMonth(int salaryPerHour, int totalWorkingDays, int maxWorkingHour, int fullDayWorkingHour) {
-        int empCheck;
-        int empHr = 0;
-        int totalSalary = 0;
-        int day = 0;
-        while (day < totalWorkingDays && (empHr + fullDayWorkingHour) <= maxWorkingHour) {
-            day++;
-            empCheck = (int) (Math.floor(Math.random() * 10) % 3);
+    int computeEmpWage(String company, int empRatePerHr, int numOfWorkingDays, int maxHrsInMonth) {
 
+        int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+
+        while (totalEmpHrs <= maxHrsInMonth && totalWorkingDays < numOfWorkingDays) {
+            totalWorkingDays++;
+            int empCheck = (int) Math.floor(Math.random() * 10) % 3;
             switch (empCheck) {
-                case isPresent:
-                    empHr += fullDayWorkingHour;
+                case 0:
+                    empHrs = 8;
                     break;
-
-                case isPartTime:
-                    empHr += (fullDayWorkingHour / 2);
+                case 1:
+                    empHrs = 4;
                     break;
-
                 default:
-                    empHr += 0;
-                    break;
+                    empHrs = 0;
             }
-            System.out.println("Working day : " + day + " (Present : " + empCheck + ")");
+            totalEmpHrs += empHrs;
+            System.out.println("Day#: " + totalWorkingDays + " Emp Hr: " + empHrs);
         }
-        totalSalary = empHr * salaryPerHour;
-        System.out.println("Monthly Employee Wage is : " + totalSalary + "\nTotal working hours are : " + empHr);
+        int totalEmpWage = totalEmpHrs * empRatePerHr;
+        System.out.println("Total Emp Wage for " + company + " is : " + totalEmpWage);
+        return totalEmpWage;
     }
 
     public static void main(String[] args) {
-        EmployeeAttendance obj = new EmployeeAttendance();
-        obj.wagesTillMonth(20, 20, 100, 8);
+        EmployeeAttendance emp = new EmployeeAttendance();
+        System.out.println("Welcome to the Employee Wage Computation Calculation");
+        emp.computeEmpWage("Microsoft", 20, 20, 100);
+        emp.computeEmpWage("Tata", 25, 18, 100);
+        emp.computeEmpWage("Hyundai", 25, 18, 100);
+        emp.computeEmpWage("Pyramid Consulting", 25, 18, 100);
     }
 }
