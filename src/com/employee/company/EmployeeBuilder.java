@@ -5,7 +5,9 @@ import java.util.ArrayList;
 public class EmployeeBuilder {
     final static int IS_FULL_TIME = 1;
     final static int IS_PART_TIME = 2;
+
     ArrayList<CompanyInfo> companyList = new ArrayList<CompanyInfo>();
+
     public void addCompanyDetailsForEmpWage(String companyName, int empRatePerHr, int numnberOfWorkingDays,
                                             int maxWorkingHrsPerMonth) {
         CompanyInfo company = new CompanyInfo(companyName, empRatePerHr, numnberOfWorkingDays, maxWorkingHrsPerMonth);
@@ -33,6 +35,7 @@ public class EmployeeBuilder {
         }
         return empHrs;
     }
+
     public void empWgaeComputation(CompanyInfo company) {
         int days = 0;
         int totalWorkingHrs = 0;
