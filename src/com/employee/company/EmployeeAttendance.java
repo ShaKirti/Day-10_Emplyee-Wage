@@ -1,11 +1,10 @@
 package com.employee.company;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 public class EmployeeAttendance {
     ArrayList<Integer> Wage = new ArrayList<Integer>();
-    ArrayList<String> Wages = new ArrayList<String>();
+    ArrayList<String> companylist = new ArrayList<String>();
 
     void check() {
         int totalsalary = 0;
@@ -19,7 +18,7 @@ public class EmployeeAttendance {
         System.out.println("Enter your company name ");
         String companyName = new Scanner(System.in).nextLine();
         System.out.println(companyName);
-        Wages.add(companyName);
+        companylist.add(companyName);
 
         System.out.println("Enter Employee rate Per hour of your Company :");
         int empRatePerHr1 = new Scanner(System.in).nextInt();
@@ -54,24 +53,10 @@ public class EmployeeAttendance {
         finalsalary += totalsalary;
 
         Wage.add(finalsalary);
-        System.out.println(Wages);
-        System.out.println(Wage);
-
-    }
-    @SuppressWarnings("resource")
-    public static void main(String[] args) {
-
-        System.out.println("How many company data you want to Enter ");
-//        EmployeeAttendance audi = new EmployeeAttendance();
-
-        new Scanner(System.in).toString();
-        int noOfCompanys = new Scanner(System.in).nextInt();
-
-        for (int i = 1; i <= noOfCompanys; i++) {
-//            audi.check();
-            new EmployeeAttendance().check();
+        System.out.println("Company Names" + companylist); //
+        System.out.println("Wages of Months" + Wage);
 
         }
-    }
-
 }
+
+
