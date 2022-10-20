@@ -10,10 +10,12 @@ public class EmployeeAttendance {
         int WorkingDayPerMonth = 20;
         int monthlySalary = 0;
         int TotalWage = 0;
+        int WorkingHourPerMonth = 0;
+        int days = 1;
         
         int randomCheck = new Random().nextInt(3);
 
-        for (int i = 0; i < WorkingDayPerMonth; i++) {
+        while (days != 20 && WorkingHourPerMonth != 100) {
             switch (randomCheck) {
                 case 0:
                     System.out.println("Employee is absent.");
@@ -28,6 +30,8 @@ public class EmployeeAttendance {
                     break;
             }
             monthlySalary += TotalWage;
+            System.out.println("Day " + days + " : " + TotalWage);
+            days++;
         }
         System.out.println("Employee Monthly Salary is: "+monthlySalary);
     }
